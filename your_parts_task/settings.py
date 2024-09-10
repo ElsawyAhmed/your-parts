@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+# use configuration settings in settings.ini
+from decouple import config
 
 from pathlib import Path
 
@@ -25,7 +27,8 @@ SECRET_KEY = 'django-insecure-m1c^qnwwyyx17r)(cs_ym18s4r5c0gnlw+so&hqk22gj8g+jnh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+
 
 
 # Application definition
@@ -37,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'cart',
+
 ]
 
 MIDDLEWARE = [
@@ -75,8 +82,15 @@ WSGI_APPLICATION = 'your_parts_task.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': config('DB_ENGINE', default='django.db.backends.mysql', cast=str),
+        'NAME': config('DB_NAME', default='your_parts_cart', cast=str),
+        'HOST': config('DB_HOST', default='127.0.0.1', cast=str),
+        'PORT': config('DB_PORT', default=3306, cast=str),
+        'USER': config('DB_USER', default='sawy', cast=str),
+        'PASSWORD': config('DB_PASSWORD', default='sawy@yourParts1', cast=str),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        }
     }
 }
 

@@ -23,4 +23,5 @@ urlpatterns = [
     # Django Admin Portal
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='admin/', permanent=True)),
+    path('api/v1/cart/', include('your_cart.api.v1.urls')),
 ]

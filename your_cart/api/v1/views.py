@@ -46,6 +46,7 @@ class ProductEditAPIView(UpdateAPIView):
     serializer_class = ProductSerializer
 
 
+# Order API Views
 class OrderListAPIView(ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -53,7 +54,7 @@ class OrderListAPIView(ListAPIView):
 class OrderRetrieveAPIView(RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-#
+
 class OrderEditAPIView(UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -63,16 +64,14 @@ class OrderEditAPIView(UpdateAPIView):
     """
 
 
-
-
-
-
+# Cart Views
 @api_view(['GET'])
 @permission_classes([])
 def get_cart_view(request):
     cart = get_cart(request)
     cart_serializer = CartSerializer(cart)
     return Response(cart_serializer.data)
+
 
 @api_view(['POST'])
 @permission_classes([])
@@ -97,7 +96,6 @@ def add_to_cart_view(request):
     return Response({"message": "Product added to cart"})
 
 
-# Update item quantity in a cart
 @api_view(['DELETE'])
 @permission_classes([])
 def remove_from_cart_view(request, item_id):
@@ -116,9 +114,7 @@ def remove_from_cart_view(request, item_id):
 def update_cart_item_quantity_view(request, item_id):
     cart = get_cart(request)
     try:
-        print("in try")
         cart_item = CartItem.objects.get(cart=cart, product=item_id)
-        print(cart_item)
     except CartItem.DoesNotExist as e:
         print(e)
         return Response({"error": "Item not found in cart."}, status=status.HTTP_404_NOT_FOUND)
@@ -132,7 +128,6 @@ def update_cart_item_quantity_view(request, item_id):
             serializer.save()
             return Response({"message": "Cart item quantity updated."}, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 

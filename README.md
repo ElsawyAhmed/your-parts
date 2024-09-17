@@ -23,4 +23,12 @@ Run `python manage.py runserver` for a dev server.
 
 Run `python manage.py test` \
 this will run all written test cases in project and give a feedback about it, by default it \
-creates a test database to stor test data and then destroy it
+creates a test database to store test data and then destroy it
+
+
+
+## Docker Image
+Run `sudo docker build -t your_parts_image .` \
+the current working directory should be the same as the docker file \
+this will build thr docker image using DockerFile \
+and you can run it By running `sudo docker run your_parts_image 8000:8000`

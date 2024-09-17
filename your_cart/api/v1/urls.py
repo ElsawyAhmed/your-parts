@@ -12,10 +12,6 @@ urlpatterns = [
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    # Edit and Add to cart
-    # path('add/', add_to_cart),
-    # path('edit/', edit_cart),
-
     # Product CRUD
     path('product/add/', ProductCreateAPIView.as_view()),
     path('product/list/', ProductListAPIView.as_view()),

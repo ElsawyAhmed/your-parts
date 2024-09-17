@@ -18,3 +18,9 @@ to access your apis
 ## Development server
 
 Run `python manage.py runserver` for a dev server.
+
+## Unit Test
+
+Run `python manage.py test` \
+this will run all written test cases in project and give a feedback about it, by default it \
+creates a test database to stor test data and then destroy it

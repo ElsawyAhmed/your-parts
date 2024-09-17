@@ -19,9 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
 
+
 urlpatterns = [
     # Django Admin Portal
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='admin/', permanent=True)),
-    path('api/v1/cart/', include('your_cart.api.v1.urls')),
+
+    # Cart Urls
+    path('api/v1/', include('your_cart.api.v1.urls')),
+
 ]

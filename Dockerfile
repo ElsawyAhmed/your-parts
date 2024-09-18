@@ -20,5 +20,5 @@ RUN pip install -r requirements.txt
 ENV DJANGO_SETTINGS_MODULE your_parts_task.settings
 ENV PYTHONPATH /your_parts_task
 EXPOSE 8000
-CMD ["sh", "-c","python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+#CMD ["sh", "-c","python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
 

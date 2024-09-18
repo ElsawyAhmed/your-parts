@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: your_parts_cart
+      MYSQL_USER: sawy
+      MYSQL_PASSWORD: sawy@yourParts1
+      MYSQL_ROOT_PASSWORD: 96951
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306"
+
+  web:
+    build: .
+    command:  sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/your_parts_task
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

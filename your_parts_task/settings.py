@@ -85,7 +85,7 @@ DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE', default='django.db.backends.mysql', cast=str),
         'NAME': config('DB_NAME', default='your_parts_cart', cast=str),
-        'HOST': config('DB_HOST', default='127.0.0.1', cast=str),
+        'HOST': config('DB_HOST', default='db', cast=str),
         'PORT': config('DB_PORT', default=3306, cast=str),
         'USER': config('DB_USER', default='sawy', cast=str),
         'PASSWORD': config('DB_PASSWORD', default='sawy@yourParts1', cast=str),
